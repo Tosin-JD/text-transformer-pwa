@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Transformer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Text Transformer</h1>
+    <textarea id="inputText" placeholder="Type or paste your text here..."></textarea>
+    
+    <div class="buttons">
+      <button onclick="toUpperCase()">UPPERCASE</button>
+      <button onclick="toLowerCase()">lowercase</button>
+      <button onclick="toCapitalize()">Capitalize Each Word</button>
+      <button onclick="toSentenceCase()">Sentence case</button>
+      <button onclick="toCamelCase()">camelCase</button>
+      <button onclick="toPascalCase()">PascalCase</button>
+      <button onclick="toSnakeCase()">snake_case</button>
+      <button onclick="toKebabCase()">kebab-case</button>
+      <button onclick="toToggleCase()">tOGGLE cASE</button>
+      <button onclick="reverseText()">Reverse</button>
+      <button onclick="removeSpaces()">Remove Spaces</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(reg => console.log("Service Worker registered:", reg.scope))
+        .catch(err => console.error("Service Worker registration failed:", err));
+    });
+  }
+</script>
+
+</body>
+</html>
