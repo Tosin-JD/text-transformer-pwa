@@ -4,13 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Text Transformer</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <!-- Apple Touch Icon for iOS -->
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <!-- Manifest for PWA -->
+  <link rel="manifest" href="manifest.json">
+  <!-- Theme color for browser UI -->
+  <meta name="theme-color" content="#0077cc">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <h1>Text Transformer</h1>
     <textarea id="inputText" placeholder="Type or paste your text here..."></textarea>
-    
     <div class="buttons">
       <button onclick="toUpperCase()">UPPERCASE</button>
       <button onclick="toLowerCase()">lowercase</button>
@@ -25,17 +32,15 @@
       <button onclick="removeSpaces()">Remove Spaces</button>
     </div>
   </div>
-
   <script src="script.js"></script>
   <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./service-worker.js')
-        .then(reg => console.log("Service Worker registered:", reg.scope))
-        .catch(err => console.error("Service Worker registration failed:", err));
-    });
-  }
-</script>
-
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(reg => console.log("Service Worker registered:", reg.scope))
+          .catch(err => console.error("Service Worker registration failed:", err));
+      });
+    }
+  </script>
 </body>
 </html>
