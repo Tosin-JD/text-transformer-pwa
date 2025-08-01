@@ -1,46 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Text Transformer</title>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="icons/icon-192.png">
-  <!-- Apple Touch Icon for iOS -->
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
-  <!-- Manifest for PWA -->
-  <link rel="manifest" href="manifest.json">
-  <!-- Theme color for browser UI -->
-  <meta name="theme-color" content="#0077cc">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Transformer</title>
+    <link rel="icon" type="image/png" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0077cc">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="container">
-    <h1>Text Transformer</h1>
-    <textarea id="inputText" placeholder="Type or paste your text here..."></textarea>
-    <div class="buttons">
-      <button onclick="toUpperCase()">UPPERCASE</button>
-      <button onclick="toLowerCase()">lowercase</button>
-      <button onclick="toCapitalize()">Capitalize Each Word</button>
-      <button onclick="toSentenceCase()">Sentence case</button>
-      <button onclick="toCamelCase()">camelCase</button>
-      <button onclick="toPascalCase()">PascalCase</button>
-      <button onclick="toSnakeCase()">snake_case</button>
-      <button onclick="toKebabCase()">kebab-case</button>
-      <button onclick="toToggleCase()">tOGGLE cASE</button>
-      <button onclick="reverseText()">Reverse</button>
-      <button onclick="removeSpaces()">Remove Spaces</button>
+    <div class="container flex-column">
+        <h1>Text Transformer</h1>
+        <div class="settings">
+            <button class="btn" id="theme-btn">Toggle Dark/Light Mode</button>
+            <button class="btn" id="shortcuts-btn">Keyboard Shortcuts</button>
+        </div>
+        <div class="mt-3 mb-3" id="stats">Characters: 0 | Words: 0 | Sentences: 0</div>
+        <textarea id="input-text" placeholder="Type or paste your text here..."></textarea>
+        <div class="row center">
+            <button class="btn btn-primary col-3" id="copy-btn" aria-label="Copy transformed text">Copy</button>
+            <button class="btn col-3 btn-normal" id="undo-btn" aria-label="Undo last transformation">Undo</button>
+            <button class="btn col-3 btn-normal" id="redo-btn" aria-label="Redo last transformation">Redo</button>
+            <button class="btn btn-danger col-3" id="clear-text-btn" aria-label="Clear text">Clear</button>
+        </div>
+        <div class="row center">
+            <button class="btn outline" id="uppercase-btn" aria-label="Convert to uppercase">UPPERCASE</button>
+            <button class="btn outline" id="lowercase-btn" aria-label="Convert to lowercase">lowercase</button>
+            <button class="btn outline" id="capitalize-btn" aria-label="Capitalize each word">Capitalize Each Word</button>
+            <button class="btn outline" id="to-title-case-btn" aria-label="Convert to title case">Title Case</button>
+            <button class="btn outline" id="to-sentence-case-btn" aria-label="Convert to sentence case">Sentence case</button>
+            <button class="btn outline" id="to-camel-case-btn" aria-label="Convert to camel case">camelCase</button>
+            <button class="btn outline" id="to-pascal-case-btn" aria-label="Convert to Pascal case">PascalCase</button>
+            <button class="btn outline" id="to-snake-case-btn" aria-label="Convert to snake case">snake_case</button>
+            <button class="btn outline" id="to-kebab-case-btn" aria-label="Convert to kebab case">kebab-case</button>
+            <button class="btn outline" id="to-toggle-case-btn" aria-label="Toggle case">tOGGLE cASE</button>
+            <button class="btn outline" id="reverse-text-btn" aria-label="Reverse text">Reverse</button>
+            <button class="btn outline" id="remove-spaces-btn" aria-label="Remove Spaces">Remove Spaces</button>
+        </div>
+        <div id="toast-container" class="toast-container"></div>
     </div>
-  </div>
-  <script src="script.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./service-worker.js')
-          .then(reg => console.log("Service Worker registered:", reg.scope))
-          .catch(err => console.error("Service Worker registration failed:", err));
-      });
-    }
-  </script>
+    <script src="script.js"></script>
+    <!-- <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(reg => console.log("Service Worker registered:", reg.scope))
+                    .catch(err => console.error("Service Worker registration failed:", err));
+            });
+        }
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            const installButton = document.createElement('button');
+            installButton.textContent = 'Install App';
+            installButton.onclick = () => e.prompt();
+            document.querySelector('.settings').appendChild(installButton);
+        });
+    </script> -->
 </body>
+
 </html>
