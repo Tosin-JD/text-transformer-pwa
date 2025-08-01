@@ -62,6 +62,8 @@ function updateStats(text) {
     }
   }
 
+  let paragraphs = 0;
+
   document.getElementById('stats').textContent =
     `Characters: ${chars} | Words: ${words} | Sentences: ${sentences}`;
 }
