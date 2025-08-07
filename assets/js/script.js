@@ -111,7 +111,7 @@ function saveToHistory(input) {
   history = history.slice(0, historyIndex + 1);
   history.push({ input });
   historyIndex++;
-  if (history.length > 10) {
+  if (history.length > 128) {
     history.shift();
     historyIndex--;
   }
@@ -501,11 +501,21 @@ themeBtn.addEventListener('click', toggleTheme);
 shortcutsBtn.addEventListener('click', showShortcuts);
 clearTextBtn.addEventListener('click', clearText);
 
-// Input event listener
-document.getElementById('input-text').addEventListener('input', () => {
-  const input = document.getElementById('input-text').value;
+let typingTimer;
+const inputField = document.getElementById('input-text');
+const DEBOUNCE_DELAY = 100; // ms
+
+inputField.addEventListener('input', () => {
+  const input = inputField.value;
   updateStats(input);
+
+  // Debounce saving to history
+  clearTimeout(typingTimer);
+  typingTimer = setTimeout(() => {
+    saveToHistory(input);
+  }, DEBOUNCE_DELAY);
 });
+
 
 // Initialize tabs
 switchTab();
