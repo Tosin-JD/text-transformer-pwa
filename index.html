@@ -5,45 +5,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text Transformer</title>
-    <link rel="icon" type="image/png" href="icons/icon-192.png">
-    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="icon" type="image/png" href="assets/images/icons/icon-192.png">
+    <link rel="apple-touch-icon" href="assets/images/icons/icon-192.png">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0077cc">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body>
-    <div class="container flex-column align-top center">
-        <h1>Text Transformer</h1>
-        <div class="settings">
-            <button class="btn" id="theme-btn">Toggle Dark/Light Mode</button>
-            <button class="btn" id="shortcuts-btn">Keyboard Shortcuts</button>
+<body data-theme="light" class="flex-column justify-center align-center">
+    <div class="row flex-0 align-center justify-center">
+        <div data-tab="transform-text" class="btn btn-outline tabs-button active" id="transform-text-btn">Text Transform
         </div>
-        <div class="mt-3 mb-3" id="stats">Characters: 0 | Words: 0 | Sentences: 0</div>
-        <textarea id="input-text" placeholder="Type or paste your text here..."></textarea>
-        <div class="row justify-center">
-            <button class="btn btn-primary col-3" id="copy-btn" aria-label="Copy transformed text">Copy</button>
-            <button class="btn col-3 btn-normal" id="undo-btn" aria-label="Undo last transformation">Undo</button>
-            <button class="btn col-3 btn-normal" id="redo-btn" aria-label="Redo last transformation">Redo</button>
-            <button class="btn btn-danger col-3" id="clear-text-btn" aria-label="Clear text">Clear</button>
+        <div data-tab="sort-text" class="btn btn-outline tabs-button" id="sort-btn">Sort Text</div>
+    </div>
+
+    <div class="container flex-3 flex-column align-top center"> 
+        <div class="row settings">
+            <button class="btn btn-outline" id="theme-btn">Toggle Dark/Light Mode</button>
+            <button class="btn btn-outline" id="shortcuts-btn">Keyboard Shortcuts</button>
         </div>
-        <div class="row justify-center">
-            <button class="btn outline" id="uppercase-btn" aria-label="Convert to uppercase">UPPERCASE</button>
-            <button class="btn outline" id="lowercase-btn" aria-label="Convert to lowercase">lowercase</button>
-            <button class="btn outline" id="capitalize-btn" aria-label="Capitalize each word">Capitalize Each Word</button>
-            <button class="btn outline" id="to-title-case-btn" aria-label="Convert to title case">Title Case</button>
-            <button class="btn outline" id="to-sentence-case-btn" aria-label="Convert to sentence case">Sentence case</button>
-            <button class="btn outline" id="to-camel-case-btn" aria-label="Convert to camel case">camelCase</button>
-            <button class="btn outline" id="to-pascal-case-btn" aria-label="Convert to Pascal case">PascalCase</button>
-            <button class="btn outline" id="to-snake-case-btn" aria-label="Convert to snake case">snake_case</button>
-            <button class="btn outline" id="to-kebab-case-btn" aria-label="Convert to kebab case">kebab-case</button>
-            <button class="btn outline" id="to-toggle-case-btn" aria-label="Toggle case">tOGGLE cASE</button>
-            <button class="btn outline" id="reverse-text-btn" aria-label="Reverse text">Reverse</button>
-            <button class="btn outline" id="remove-spaces-btn" aria-label="Remove Spaces">Remove Spaces</button>
+
+        <!-- Shared elements that appear on both tabs -->
+        <div class="shared-elements">
+            <h1 id="tab-title">Text Transformer</h1>
+            <div class="mt-3 mb-3" id="stats">Characters: 0 | Words: 0 | Sentences: 0</div>
+            <textarea rows="5" id="input-text" placeholder="Type or paste your text here..."></textarea>
+            <div class="row justify-center">
+                <button class="btn btn-primary" id="copy-btn" aria-label="Copy transformed text">Copy</button>
+                <button class="btn btn-normal" id="undo-btn" aria-label="Undo last transformation">Undo</button>
+                <button class="btn btn-normal" id="redo-btn" aria-label="Redo last transformation">Redo</button>
+                <button class="btn btn-danger" id="clear-text-btn" aria-label="Clear text">Clear</button>
+            </div>
         </div>
+
+        <div id="transform-text" class="tab-content justify-center align-center">
+            <div class="row justify-center">
+                <button class="btn outline" id="capitalize-btn" aria-label="Capitalize each word">Capitalize Each
+                    Word</button>
+                <button class="btn outline" id="uppercase-btn" aria-label="Convert to uppercase">UPPERCASE</button>
+                <button class="btn outline" id="lowercase-btn" aria-label="Convert to lowercase">lowercase</button>
+                <button class="btn outline" id="to-title-case-btn" aria-label="Convert to title case">Title
+                    Case</button>
+                <button class="btn outline" id="to-sentence-case-btn" aria-label="Convert to sentence case">Sentence
+                    case</button>
+                <button class="btn outline" id="to-camel-case-btn" aria-label="Convert to camel case">camelCase</button>
+                <button class="btn outline" id="to-pascal-case-btn"
+                    aria-label="Convert to Pascal case">PascalCase</button>
+                <button class="btn outline" id="to-snake-case-btn"
+                    aria-label="Convert to snake case">snake_case</button>
+                <button class="btn outline" id="to-kebab-case-btn"
+                    aria-label="Convert to kebab case">kebab-case</button>
+                <button class="btn outline" id="to-toggle-case-btn" aria-label="Toggle case">tOGGLE cASE</button>
+                <button class="btn outline" id="reverse-text-btn" aria-label="Reverse text">Reverse</button>
+                <button class="btn outline" id="remove-spaces-btn" aria-label="Remove Spaces">Remove Spaces</button>
+            </div>
+        </div>
+
+        <div id="sort-text" class="tab-content justify-center align-center">
+            <div class="row justify-center">
+                <button class="btn outline" id="sort-alpha-btn" aria-label="Sort alphabetically">Sort
+                    Alphabetically</button>
+                <button class="btn outline" id="sort-reverse-btn" aria-label="Sort from Z to A">Sort Z to A</button>
+                <button class="btn outline" id="sort-length-btn" aria-label="Sort by length">Sort by Length</button>
+                <button class="btn outline" id="sort-length-reverse-btn" aria-label="Sort by length reversed">Sort by
+                    Length Reverse</button>
+                <button class="btn outline" id="shuffle-btn" aria-label="Shuffle list">Shuffle</button>
+            </div>
+        </div>
+
         <div id="toast-container" class="toast-container"></div>
     </div>
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/app.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -60,6 +93,7 @@
             document.querySelector('.settings').appendChild(installButton);
         });
     </script>
+
 </body>
 
 </html>

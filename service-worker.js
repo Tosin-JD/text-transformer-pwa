@@ -2,11 +2,11 @@ const CACHE_NAME = "text-transformer-cache-v1";
 const urlsToCache = [
   "./",
   "./index.html",
-  "./style.css",
-  "./script.js",
+  "./assets/css/style.css",
+  "./assets/js/script.js",
   "./manifest.json",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png"
+  "./assets/images/icons/icon-192.png",
+  "./assets/images/icons/icon-512.png"
 ];
 
 // Install event - caching assets
